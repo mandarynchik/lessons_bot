@@ -1,5 +1,5 @@
 import requests
-from .settings import ok_codes, bank_root_urls, currency_necessary_keys
+from .settings import ok_codes, bank_root_urls, currency_necessary_keys, logger
 
 def get_today_currencies(country_abbr:str, currency_abbr:str)->dict:
 	root_url = bank_root_urls[f"{country_abbr}_root_url"]
@@ -15,11 +15,12 @@ def get_today_currencies(country_abbr:str, currency_abbr:str)->dict:
 			raw_currencies = today_currencies = res.json()
 			return raw_currencies
 		else:
-			print(f"Запрос по адресу {url} получил ответ со статусом {res.status_code}")
+			logger.error(f"Неудача с запросом: статус {res.status_code}")
 	except Exception as e:
-		raise Exception(f"Some troubles with request to {updates_url}: {e}")
+		error_message = f"Some troubles with request to {updates_url}: {e}"
+		logger.error(error_message)
+		raise Exception(error_message)
 	
-
 def today_currency_by_abbr(country_abbr:str, currency_abbr:str):
 	today_currencies = get_today_currencies(country_abbr, currency_abbr)
 	if today_currencies:
@@ -30,6 +31,7 @@ def today_currency_by_abbr(country_abbr:str, currency_abbr:str):
 			if country_abbr == "uk":
 				if curr["cc"] == currency_abbr.upper():
 					return curr
+					pass
 
 def currency_message_to_user(today_currency_info:dict, country_abbr:str):
 	if type(today_currency_info) == dict:
@@ -52,7 +54,8 @@ def currency_message_to_user(today_currency_info:dict, country_abbr:str):
 		message = f"Cегодня {scale} {money_abbr} стоит {rate} {country_money}"
 		return message
 	else:
-		print(f"Какие-то проблемы с входящими данными - {today_currency_info}")
+		error_message = f"Some troubles with request to {updates_url}: {e}"
+		logger.error(error_message)
 
 """
 result = today_currency_by_abbr("rb", "usd")
