@@ -82,24 +82,11 @@ class TelegramBot:
 		last_message_number = 0
 		while True:
 			updates = self.get_updates()
-			message_id = updates["result"][-1]["message"]["message_id"]
-			chat_id = updates["result"][-1]["message"]["chat"]["id"] 
-			last_message_text = updates["result"][-1]["message"]["text"]
+			if updates["result"]:
+				message_id = updates["result"][-1]["message"]["message_id"]
+				chat_id = updates["result"][-1]["message"]["chat"]["id"] 
+				last_message_text = updates["result"][-1]["message"]["text"]
 
-			if message_id > last_message_number:
-				self.process_message(chat_id, last_message_text)
-				last_message_number = message_id
-
-
-"""
-classes
-exceptions
-православный код
-
-
-logs
-envfiles
-venv->pipenv
-
-containers
-"""
+				if message_id > last_message_number:
+					self.process_message(chat_id, last_message_text)
+					last_message_number = message_id

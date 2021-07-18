@@ -26,13 +26,14 @@ def pooling(token:str):
 	last_message_number = 0
 	while True:
 		updates = get_updates(token)
-		message_id = updates["result"][-1]["message"]["message_id"]
-		chat_id = updates["result"][-1]["message"]["chat"]["id"] 
-		last_message_text = updates["result"][-1]["message"]["text"]
+		if updates["result"]:
+			message_id = updates["result"][-1]["message"]["message_id"]
+			chat_id = updates["result"][-1]["message"]["chat"]["id"] 
+			last_message_text = updates["result"][-1]["message"]["text"]
 
-		if message_id > last_message_number:
-			process_message(chat_id, last_message_text, token)
-			last_message_number = message_id
+			if message_id > last_message_number:
+				process_message(chat_id, last_message_text, token)
+				last_message_number = message_id
 
 
 def process_message(chat_id:str, message_text:str, token:str)->None:

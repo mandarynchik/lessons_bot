@@ -25,13 +25,20 @@ def pooling(token):
 	last_message_number = 0
 	while True:
 		updates = get_updates(token)
-		message_id = updates["result"][-1]["message"]["message_id"]
-		chat_id = updates["result"][-1]["message"]["chat"]["id"] 
-		last_message_text = updates["result"][-1]["message"]["text"]
+		if updates["result"]:
+			"""
+			Telegram чистит записи  сообщения примерно раз в сутки,
+			поэтому можем получить ситуацию когда ответ будет
+			{"ok":true,"result":[]}
+			тогда updates["result"][-1]  вызовет падение. 
+			"""
+			message_id = updates["result"][-1]["message"]["message_id"]
+			chat_id = updates["result"][-1]["message"]["chat"]["id"] 
+			last_message_text = updates["result"][-1]["message"]["text"]
 
-		if message_id > last_message_number:
-			process_message(chat_id, last_message_text, token)
-			last_message_number = message_id
+			if message_id > last_message_number:
+				process_message(chat_id, last_message_text, token)
+				last_message_number = message_id
 
 
 def process_message(chat_id, message_text, token):
