@@ -37,12 +37,3 @@ def create_weather_message(city:str)->str:
 		return weather_message
 	else:
 		return False
-
-"""
-result = create_weather_message("Kyiv")
-print(result)
-result = create_weather_message("London")
-print(result)
-result = create_weather_message("Brest")
-print(result)
-"""

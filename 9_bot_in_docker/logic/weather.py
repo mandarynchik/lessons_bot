@@ -5,10 +5,8 @@ from . settings import weather_root_url, weather_token, ok_codes, logger
 
 def get_current_weather(city:str)->dict:
 	url = f"{weather_root_url}?q={city}&appid={weather_token}&units=metric"
-	print(url)
 	try:
 		res = requests.get(url)
-		print(res)
 		if res.status_code in ok_codes:
 			weather_in_city = res.json()
 			return weather_in_city

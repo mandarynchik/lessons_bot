@@ -54,5 +54,5 @@ def currency_message_to_user(today_currency_info:dict, country_abbr:str):
 		message = f"Cегодня {scale} {money_abbr} стоит {rate} {country_money}"
 		return message
 	else:
-		error_message = f"Some troubles with request to {updates_url}: {e}"
+		error_message = f"Something wrong wint income dict:{today_currency_info}"
 		logger.error(error_message)

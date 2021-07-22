@@ -21,8 +21,8 @@ with open(logger_config_file, 'r') as logger_config:
 logging.config.dictConfig(config_dict)  
 logger = logging.getLogger(__name__)  
 
-weather_root_url = "http://api.openweathermap.org/data/2.5/weather"
 
+weather_root_url = "http://api.openweathermap.org/data/2.5/weather"
 
 ok_codes = (200,201,202,203,204,205)
 available_currency_countries = ("uk","rb")
