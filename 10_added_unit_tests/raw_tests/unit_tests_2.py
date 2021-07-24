@@ -39,17 +39,18 @@ def currency_message_to_user(today_currency_info:dict, country_abbr:str):
 uk_raw_to_message = currency_message_to_user(NBUK_uk_usd_raw, uk_abbr)
 rb_raw_to_message = currency_message_to_user(NBRB_rb_usd_raw, rb_abbr)
 
-print(uk_raw_to_message)
-print(rb_raw_to_message)
+#print(uk_raw_to_message)
+#print(rb_raw_to_message)
+
 
 class TestStringMethods(unittest.TestCase):
     def test_raw_currency_to_string_type(self):
         uk_usd_currency_message = currency_message_to_user(NBUK_uk_usd_raw, uk_abbr)
-        rb_usd_currency_message = currency_message_to_user(NBRB_rb_usd_raw, rb_abbr)
+        rb_usd_currency_message = currency_message_to_user({}, rb_abbr)
 
         self.assertTrue(isinstance(uk_usd_currency_message, str))
-        self.assertTrue(isinstance(rb_usd_currency_message, str))
-
+        self.assertTrue(isinstance(rb_usd_currency_message, bool))
+    
     def test_raw_currency_to_string_value(self):
         uk_usd_currency_message = currency_message_to_user(NBUK_uk_usd_raw, uk_abbr)
         rb_usd_currency_message = currency_message_to_user(NBRB_rb_usd_raw, rb_abbr)
@@ -59,7 +60,7 @@ class TestStringMethods(unittest.TestCase):
 
         self.assertEqual(expected_currency_message_uk, uk_usd_currency_message)
         self.assertEqual(expected_currency_message_rb, rb_usd_currency_message)
-
+    
 
 if __name__ == "__main__":
     unittest.main()

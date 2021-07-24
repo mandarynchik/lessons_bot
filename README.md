@@ -24,5 +24,6 @@
 
 ## Бот [запакован в Docker-контейнер](https://github.com/Winorbit/lessons_bot/tree/main/9_bot_in_docker).
 
+## [Добавлены unit-тесты](https://github.com/Winorbit/lessons_bot/tree/main/10_added_unit_tests).
 
 
