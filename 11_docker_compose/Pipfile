@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 requests = "*"
 python-dotenv = "*"
-pylint = "*"
 
 [requires]
 python_version = "3.7"

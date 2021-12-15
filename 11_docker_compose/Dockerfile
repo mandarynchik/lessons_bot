@@ -7,6 +7,8 @@ RUN apt-get update -y
 RUN /usr/local/bin/python -m pip install --upgrade pip 
 RUN pip install -r requirements.txt
 
+
 EXPOSE 5000
 
-CMD ["python", "run.py"]
+ENTRYPOINT [ "python" ]
+CMD ["run.py"]
