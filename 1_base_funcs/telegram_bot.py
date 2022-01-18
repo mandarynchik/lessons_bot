@@ -27,7 +27,7 @@ def send_message():
 
 
 # send_message()
-schedule.every(3).minutes.do(send_message)
+schedule.every().day.at("10:30").do(send_message)
 
 while True:
     schedule.run_pending()
